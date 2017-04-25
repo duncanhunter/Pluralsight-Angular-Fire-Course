@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 
 @Component({
