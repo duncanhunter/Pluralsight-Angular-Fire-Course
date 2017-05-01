@@ -11,11 +11,13 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { MaterialModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CompanyComponent } from './company/company/company.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CompanyComponent
   ],
   imports: [
     BrowserModule,
