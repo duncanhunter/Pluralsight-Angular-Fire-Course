@@ -1,4 +1,3 @@
-import 'hammerjs';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -7,10 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from 'angularfire2';
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment.prod';
-import { AngularFireDatabase } from 'angularfire2/database';
-import { MaterialModule } from '@angular/material';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -22,12 +17,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    MaterialModule,
-    BrowserAnimationsModule,
-    FlexLayoutModule
+    AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
-  providers: [AngularFireDatabase],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
