@@ -7,15 +7,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from 'angularfire2';
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment.prod';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { MaterialModule } from '@angular/material';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { CompanyEditComponent } from './company/company-edit/company-edit.component';
+import { CompanyService } from './company/company.service';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CompanyEditComponent
   ],
   imports: [
     BrowserModule,
@@ -23,11 +26,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule,
     MaterialModule,
     BrowserAnimationsModule,
     FlexLayoutModule
   ],
-  providers: [AngularFireDatabase],
+  providers: [CompanyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
