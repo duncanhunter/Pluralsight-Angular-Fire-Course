@@ -1,0 +1,6 @@
+<div *ngIf="company$ | async as comapny; else loading">
+  {{company } json}
+</div>
+<ng-template #loading>
+  <md-progress-bar mode="indeterminate"></md-progress-bar>
+</ng-template>
