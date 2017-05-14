@@ -1,0 +1,9 @@
+md-card {
+  margin-bottom: 10px;
+}
+
+button[md-fab] {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+}

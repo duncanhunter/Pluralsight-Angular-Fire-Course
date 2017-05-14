@@ -1,29 +1,38 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/from';
+import { Company } from './company';
 
 @Injectable()
 export class CompanyService {
-  company$: FirebaseObjectObservable<any>;
+  companies$: FirebaseListObservable<any>;
 
   constructor(private db: AngularFireDatabase) {
-    this.company$ = this.db.object(`company`);
+    this.companies$ = this.db.list(`companies`);
+  }
+
+  getCompany(companyId: string) {
+    return this.db.object(`companies/${companyId}`);
+  }
+
+  getCompanies() {
+    return this.companies$;
   }
 
   saveCompany(company) {
-    Observable.from(this.company$.set({ name: company.name }))
-    .catch(error => Observable.throw(error));
+    Observable.from(this.companies$.push({ name: company.name }))
+      .catch(error => Observable.throw(error));
   }
 
-  editCompany(company) {
-    this.company$.update({ phone: 123 })
+  editCompany(company: Company) {
+    this.companies$.update(company.$key, { phone: 123 })
       .then(_ => console.log('success'))
       .catch(error => console.log(error));
   }
 
-  removeCompany(company) {
-    this.company$.remove()
+  removeCompany(company: Company) {
+    this.companies$.remove(company.$key)
       .then(_ => console.log('success'))
       .catch(error => console.log(error));
   }
