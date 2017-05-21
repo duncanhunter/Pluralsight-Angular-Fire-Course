@@ -3,7 +3,7 @@ import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/data
 import { CompanyService } from '../company.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { Company } from '../../company';
+import { Company } from '../company';
 
 @Component({
   selector: 'app-company-edit',

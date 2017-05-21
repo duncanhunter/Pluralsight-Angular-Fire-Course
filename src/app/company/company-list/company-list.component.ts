@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CompanyService } from '../company.service';
 import { FirebaseListObservable } from 'angularfire2/database';
-import { Company } from '../../company';
-import { ErrorObservable } from "rxjs/observable/ErrorObservable";
 import { Observable } from 'rxjs/Observable';
+import { Company } from '../company';
 
 @Component({
   selector: 'app-company-list',

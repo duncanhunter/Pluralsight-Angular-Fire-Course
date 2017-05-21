@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/from';
-import { Company } from '../company';
+import 'rxjs/add/operator/catch';
+
+import { Company } from './company';
 
 @Injectable()
 export class CompanyService {
@@ -44,7 +46,6 @@ export class CompanyService {
 
   private errorHandler(error) {
     console.log(error);
-    debugger
     return Observable.throw(error.message);
   }
 
