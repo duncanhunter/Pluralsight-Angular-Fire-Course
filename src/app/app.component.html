@@ -1,9 +1,11 @@
 <md-toolbar color="primary">
-  <span>Angularfire</span>
+  <div fxLayoutAlign="space-between center" class="nav-buttons">
+    <span>Angularfire</span>
+    <button md-button [routerLink]="['/company-list']">Companies</button>
+  </div>
 </md-toolbar>
 <div>
   <div fxFlexOffset.gt-sm="15%" fxFlex.gt-sm="70%">
-    <p>container</p>
     <router-outlet></router-outlet>
   </div>
 </div>

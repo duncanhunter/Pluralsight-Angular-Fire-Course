@@ -11,11 +11,15 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { MaterialModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
-
+import { CompanyEditComponent } from './company/company-edit/company-edit.component';
+import { CompanyService } from './company/company.service';
+import { CompanyListComponent } from './company/company-list/company-list.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CompanyEditComponent,
+    CompanyListComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +32,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     BrowserAnimationsModule,
     FlexLayoutModule
   ],
-  providers: [],
+  providers: [CompanyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
