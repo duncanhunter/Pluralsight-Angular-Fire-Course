@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
 import { CompanyService } from '../company.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import { Company } from '../../company';
 
 @Component({
   selector: 'app-company-edit',
@@ -8,24 +11,35 @@ import { CompanyService } from '../company.service';
   styleUrls: ['./company-edit.component.css']
 })
 export class CompanyEditComponent implements OnInit {
-    company$: FirebaseObjectObservable<any>;
+  isNewCompany: boolean;
+  companyKey: string;
+  company$: FirebaseObjectObservable<Company> | Observable<string>;
 
-  constructor(private companyService: CompanyService) {
-     this.company$ = this.companyService.company$;
-   }
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private companyService: CompanyService) { }
 
   ngOnInit() {
+    this.companyKey = this.activatedRoute.snapshot.params['id'];
+    this.isNewCompany = this.companyKey === 'new';
+    !this.isNewCompany ? this.getCompany() : this.company$ = Observable.of({}) as FirebaseObjectObservable<Company>;
+  }
+
+  getCompany() {
+    this.company$ = this.companyService.getCompany(this.companyKey);
   }
 
   saveCompany(company) {
-    this.companyService.saveCompany(company);
-  }
+    const save = this.isNewCompany
+      ? this.companyService.saveCompany(company)
+      : this.companyService.editCompany(company);
 
-  editCompany(company) {
-    this.companyService.editCompany(company);
+      save.then(_ => this.router.navigate([`company-list`]));
   }
 
   removeCompany(company) {
-    this.companyService.removeCompany(company);
+    this.companyService.removeCompany(company)
+    .then(_ => this.router.navigate([`company-list`]));
   }
 }
