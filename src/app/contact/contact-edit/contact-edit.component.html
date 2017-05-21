@@ -1,0 +1,10 @@
+<h1>Contact Edit</h1>
+<md-card *ngIf="contact$ | async as contact">
+    <md-input-container>
+        <input type="text" mdInput [(ngModel)]="contact.name">
+    </md-input-container>
+    <md-card-actions align="right">
+        <button md-button (click)="saveContact(contact)">Save</button>
+        <button md-button (click)="removeContact(contact)">Remove</button>
+    </md-card-actions>
+</md-card>

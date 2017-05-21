@@ -14,12 +14,17 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { CompanyEditComponent } from './company/company-edit/company-edit.component';
 import { CompanyService } from './company/company.service';
 import { CompanyListComponent } from './company/company-list/company-list.component';
+import { ContactService } from './contact/contact.service';
+import { ContactEditComponent } from './contact/contact-edit/contact-edit.component';
+import { ContactListComponent } from './contact/contact-list/contact-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CompanyEditComponent,
-    CompanyListComponent
+    CompanyListComponent, 
+    ContactEditComponent,
+    ContactListComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +37,7 @@ import { CompanyListComponent } from './company/company-list/company-list.compon
     BrowserAnimationsModule,
     FlexLayoutModule
   ],
-  providers: [CompanyService],
+  providers: [CompanyService, ContactService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

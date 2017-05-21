@@ -1,0 +1,6 @@
+<h1>Contacts</h1>
+<md-card *ngFor="let contact of contacts$ | async"fxLayoutAlign="space-between center">
+    <span>{{contact.name}}</span>
+    <button md-button [routerLink]="['/contact-edit', contact.$key]" >Edit</button>
+</md-card>
+<button md-fab [routerLink]="['/contact-edit/new']"><md-icon>add</md-icon></button>
