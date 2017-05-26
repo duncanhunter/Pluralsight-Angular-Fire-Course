@@ -3,6 +3,11 @@
     <md-input-container>
         <input type="text" mdInput [(ngModel)]="contact.name">
     </md-input-container>
+    <div *ngIf="!isNewContact">
+        <md-select placeholder="company" [(ngModel)]="contact.companyKey">
+            <md-option *ngFor="let company of companies$ | async" [value]="company.$key">{{company.name}}</md-option>
+        </md-select>
+    </div>
     <md-card-actions align="right">
         <button md-button (click)="saveContact(contact)">Save</button>
         <button md-button (click)="removeContact(contact)">Remove</button>

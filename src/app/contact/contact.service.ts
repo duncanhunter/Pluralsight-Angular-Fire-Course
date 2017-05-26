@@ -21,8 +21,13 @@ export class ContactService {
     .catch(this.errorHandler);
   }
 
-  getContacts() {
-    return this.contacts$
+  getContacts(companyKey) {
+    return this.db.list(`contacts`, {
+      query: {
+        orderByChild: 'companyKey',
+        equalTo: companyKey
+      }
+    })
       .catch(this.errorHandler);
   }
 

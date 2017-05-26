@@ -4,6 +4,8 @@ import { ContactService } from '../contact.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Contact } from '../contact';
+import { CompanyService } from '../../company/company.service';
+import { Company } from '../../company/company';
 
 @Component({
   selector: 'app-contact-edit',
@@ -11,6 +13,7 @@ import { Contact } from '../contact';
   styleUrls: ['./contact-edit.component.css']
 })
 export class ContactEditComponent implements OnInit {
+  companies$: Observable<Company[]>;
   isNewContact: boolean;
   contactKey: string;
   contact$: FirebaseObjectObservable<Contact> | Observable<string>;
@@ -18,9 +21,11 @@ export class ContactEditComponent implements OnInit {
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private contactService: ContactService) { }
+    private contactService: ContactService,
+    private companyService: CompanyService) { }
 
   ngOnInit() {
+    this.companies$ = this.companyService.getCompanies();
     this.contactKey = this.activatedRoute.snapshot.params['id'];
     this.isNewContact = this.contactKey === 'new';
     !this.isNewContact ? this.getContact() : this.contact$ = Observable.of({}) as FirebaseObjectObservable<Contact>;

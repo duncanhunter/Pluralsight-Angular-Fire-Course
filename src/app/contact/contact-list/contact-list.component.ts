@@ -3,6 +3,8 @@ import { ContactService } from '../contact.service';
 import { FirebaseListObservable } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import { Contact } from '../contact';
+import { CompanyService } from '../../company/company.service';
+import { Company } from '../../company/company';
 
 @Component({
   selector: 'app-contact-list',
@@ -10,16 +12,20 @@ import { Contact } from '../contact';
   styleUrls: ['./contact-list.component.css']
 })
 export class ContactListComponent implements OnInit {
+  companies$: Observable<Company[]>;
   contacts$: FirebaseListObservable<Contact[]> | Observable<string>;
 
-  constructor(private contactService: ContactService) { }
+  constructor(
+    private companyService: CompanyService,
+    private contactService: ContactService) { }
 
   ngOnInit() {
+    this.companies$ = this.companyService.getCompanies();
     this.getContacts();
   }
 
-  getContacts() {
-    this.contacts$ = this.contactService.getContacts();
+  getContacts(companyKey?: string) {
+    this.contacts$ = this.contactService.getContacts(companyKey);
   }
 
 }
