@@ -17,15 +17,15 @@ export class ContactListComponent implements OnInit {
 
   constructor(
     private companyService: CompanyService,
-    private contactService: ContactService) { }
+    public contactService: ContactService) { }
 
   ngOnInit() {
     this.companies$ = this.companyService.getCompanies();
     this.getContacts();
   }
 
-  getContacts(companyKey?: string) {
-    this.contacts$ = this.contactService.getContacts(companyKey);
+  getContacts() {
+    this.contacts$ = this.contactService.getContacts();
   }
 
 }

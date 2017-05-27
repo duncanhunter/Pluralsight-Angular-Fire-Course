@@ -5,9 +5,11 @@ import 'rxjs/add/observable/from';
 import 'rxjs/add/operator/catch';
 
 import { Contact } from './contact';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class ContactService {
+  subject$ = new BehaviorSubject<string>(undefined);
   contacts$: FirebaseListObservable<Contact[]>;
   contact$: FirebaseObjectObservable<Contact>;
 
@@ -21,11 +23,11 @@ export class ContactService {
     .catch(this.errorHandler);
   }
 
-  getContacts(companyKey) {
+  getContacts() {
     return this.db.list(`contacts`, {
       query: {
         orderByChild: 'companyKey',
-        equalTo: companyKey
+        equalTo: this.subject$
       }
     })
       .catch(this.errorHandler);
