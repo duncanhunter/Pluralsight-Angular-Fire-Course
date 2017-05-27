@@ -16,7 +16,9 @@ export class ContactEditComponent implements OnInit {
   companies$: Observable<Company[]>;
   isNewContact: boolean;
   contactKey: string;
-  contact$: FirebaseObjectObservable<Contact> | Observable<string>;
+  contact: Contact;
+  selectedCompany: Company;
+  contactCompanies = [];
 
   constructor(
     private router: Router,
@@ -28,11 +30,25 @@ export class ContactEditComponent implements OnInit {
     this.companies$ = this.companyService.getCompanies();
     this.contactKey = this.activatedRoute.snapshot.params['id'];
     this.isNewContact = this.contactKey === 'new';
-    !this.isNewContact ? this.getContact() : this.contact$ = Observable.of({}) as FirebaseObjectObservable<Contact>;
+    if (!this.isNewContact) { this.getContact(); };
+  }
+
+  addCompany() {
+    this.contact.contactCompanies[this.selectedCompany.$key] = { name: this.selectedCompany.name };
+    this.setContactCompanies();
   }
 
   getContact() {
-    this.contact$ = this.contactService.getContact(this.contactKey);
+    this.contactService.getContact(this.contactKey)
+      .subscribe(contact => {
+        this.contact = contact;
+        this.setContactCompanies();
+      });
+  }
+
+  setContactCompanies() {
+    if (this.contact.contactCompanies == null) { this.contact.contactCompanies = {}; };
+    this.contactCompanies = Object.keys(this.contact.contactCompanies).map(key => this.contact.contactCompanies[key]);
   }
 
   saveContact(contact) {
@@ -40,11 +56,11 @@ export class ContactEditComponent implements OnInit {
       ? this.contactService.saveContact(contact)
       : this.contactService.editContact(contact);
 
-      save.then(_ => this.router.navigate([`contact-list`]));
+    save.then(_ => this.router.navigate([`contact-list`]));
   }
 
   removeContact(contact) {
     this.contactService.removeContact(contact)
-    .then(_ => this.router.navigate([`contact-list`]));
+      .then(_ => this.router.navigate([`contact-list`]));
   }
 }
