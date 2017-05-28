@@ -20,7 +20,7 @@ export class ContactService {
 
   getContact(contactKey: string) {
     return this.db.object(`contacts/${contactKey}`)
-    .catch(this.errorHandler);
+      .catch(this.errorHandler);
   }
 
   getContacts() {
@@ -40,13 +40,27 @@ export class ContactService {
   }
 
   editContact(contact: Contact) {
-    return this.contacts$.update(contact.$key, contact)
+    const updateContact = {};
+
+    updateContact[`contacts/${contact.$key}`] = contact;
+    Object.keys(contact.contactCompanies).forEach(companyKey => {
+      updateContact[`companyContacts/${companyKey}/${contact.$key}`] = true;
+    });
+
+    return this.db.object('/').update(updateContact)
       .then(_ => console.log('success'))
       .catch(error => console.log(error));
   }
 
   removeContact(contact) {
-    return this.contacts$.remove(contact.$key)
+    const removeContact = {};
+
+    removeContact[`contacts/${contact.$key}`] = null;
+    Object.keys(contact.contactCompanies).forEach(companyKey => {
+      removeContact[`companyContacts/${companyKey}/${contact.$key}`] = null;
+    });
+
+    return this.db.object('/').update(removeContact)
       .then(_ => console.log('success'))
       .catch(error => console.log(error));
   }

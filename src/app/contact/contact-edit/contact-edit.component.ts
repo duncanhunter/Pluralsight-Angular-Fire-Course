@@ -16,7 +16,7 @@ export class ContactEditComponent implements OnInit {
   companies$: Observable<Company[]>;
   isNewContact: boolean;
   contactKey: string;
-  contact: Contact;
+  contact = {name: ''} as Contact;
   selectedCompany: Company;
   contactCompanies = [];
 
