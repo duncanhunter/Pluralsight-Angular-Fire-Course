@@ -29,7 +29,7 @@ export class ContactService {
     return this.subject$
       .switchMap(companyKey => companyKey === undefined
         ? this.contacts$
-        : this.companyContactsJoin(companyKey))
+        : this.db.list(`companyContacts/${companyKey}`))
       .catch(this.errorHandler);
   }
 
@@ -55,7 +55,7 @@ export class ContactService {
 
     updateContact[`contacts/${contact.$key}`] = contact;
     Object.keys(contact.contactCompanies).forEach(companyKey => {
-      updateContact[`companyContacts/${companyKey}/${contact.$key}`] = true;
+      updateContact[`companyContacts/${companyKey}/${contact.$key}`] = {name: contact.name};
     });
 
     return this.db.object('/').update(updateContact)
