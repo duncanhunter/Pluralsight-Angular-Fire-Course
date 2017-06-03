@@ -1,9 +1,14 @@
 <md-toolbar color="primary">
   <div fxLayoutAlign="space-between center" class="nav-buttons">
-    <span>Angularfire</span>
-    <div>
-      <button md-button [routerLink]="['/company-list']">Companies</button>
-      <button md-button [routerLink]="['/contact-list']">Contacts</button>
+    <button md-button [routerLink]="['/home']">Angularfire</button>
+
+    <div *ngIf="!(authService.user$ | async)?.uid">
+      <button (click)="authService.login()" md-button>Login</button>
+    </div>
+    <div *ngIf="(authService.user$ | async)?.uid">
+        <button md-button [routerLink]="['/company-list']">Companies</button>
+        <button md-button [routerLink]="['/contact-list']">Contacts</button>
+        <button (click)="authService.logout()" md-button>Logout</button>
     </div>
   </div>
 </md-toolbar>

@@ -17,14 +17,19 @@ import { CompanyListComponent } from './company/company-list/company-list.compon
 import { ContactService } from './contact/contact.service';
 import { ContactEditComponent } from './contact/contact-edit/contact-edit.component';
 import { ContactListComponent } from './contact/contact-list/contact-list.component';
+import { AuthService } from './services/auth.service';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AuthGuard } from './services/auth.guard';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CompanyEditComponent,
-    CompanyListComponent, 
+    CompanyListComponent,
     ContactEditComponent,
-    ContactListComponent
+    ContactListComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -33,11 +38,17 @@ import { ContactListComponent } from './contact/contact-list/contact-list.compon
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
+    AngularFireAuthModule,
     MaterialModule,
     BrowserAnimationsModule,
     FlexLayoutModule
   ],
-  providers: [CompanyService, ContactService],
+  providers: [
+    CompanyService,
+    ContactService,
+    AuthService,
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
