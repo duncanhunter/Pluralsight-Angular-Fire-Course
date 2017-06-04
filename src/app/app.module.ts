@@ -17,15 +17,16 @@ import { CompanyListComponent } from './company/company-list/company-list.compon
 import { ContactService } from './contact/contact.service';
 import { ContactEditComponent } from './contact/contact-edit/contact-edit.component';
 import { ContactListComponent } from './contact/contact-list/contact-list.component';
-import { AuthService } from './auth.service';
+import { AuthService } from './auth/auth.service';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { HomeComponent } from './home/home.component';
+import { AuthGuard } from './auth/auth.guard';
 
 @NgModule({
   declarations: [
     AppComponent,
     CompanyEditComponent,
-    CompanyListComponent, 
+    CompanyListComponent,
     ContactEditComponent,
     ContactListComponent,
     HomeComponent
@@ -42,7 +43,12 @@ import { HomeComponent } from './home/home.component';
     BrowserAnimationsModule,
     FlexLayoutModule
   ],
-  providers: [CompanyService, ContactService, AuthService],
+  providers: [
+    AuthGuard,
+    CompanyService,
+    ContactService,
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
