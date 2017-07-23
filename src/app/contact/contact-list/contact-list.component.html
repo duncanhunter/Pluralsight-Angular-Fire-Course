@@ -1,0 +1,12 @@
+<div fxLayoutAlign="space-between center">
+  <h1>Contacts</h1>
+  <md-select placeholder="company" (change)="contactService.subject$.next($event.value)">
+    <md-option [value]="undefined">All</md-option>
+    <md-option *ngFor="let company of companies$ | async" [value]="company.$key">{{company.name}}</md-option>
+  </md-select>
+</div>
+<md-card *ngFor="let contact of contacts$ | async" fxLayoutAlign="space-between center">
+  <span>{{contact.name}}</span>
+  <button md-button [routerLink]="['/contact-edit', contact.$key]">Edit</button>
+</md-card>
+<button md-fab [routerLink]="['/contact-edit/new']"><md-icon>add</md-icon></button>

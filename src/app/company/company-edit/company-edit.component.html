@@ -1,0 +1,10 @@
+<h1>Company Edit</h1>
+<md-card *ngIf="company$ | async as company">
+    <md-input-container>
+        <input type="text" mdInput [(ngModel)]="company.name">
+    </md-input-container>
+    <md-card-actions align="right">
+        <button md-button (click)="saveCompany(company)">Save</button>
+        <button md-button (click)="removeCompany(company)">Remove</button>
+    </md-card-actions>
+</md-card>

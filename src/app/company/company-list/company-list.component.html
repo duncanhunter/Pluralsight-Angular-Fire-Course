@@ -1,0 +1,6 @@
+<h1>Companies</h1>
+<md-card *ngFor="let company of companies$ | async"fxLayoutAlign="space-between center">
+    <span>{{company.name}}</span>
+    <button md-button [routerLink]="['/company-edit', company.$key]" >Edit</button>
+</md-card>
+<button md-fab [routerLink]="['/company-edit/new']"><md-icon>add</md-icon></button>
