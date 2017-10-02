@@ -2,7 +2,7 @@
 
 ## How to install code for each course module
 > All before and after code demos are in branches you can clone and run.
-![branchs list]("./src/assets/branching-info.png")
+![branchs list](src/assets/branching-info.png)
 
 To clone a branch from this GitHub repo run the following commands:
 1. Clone the repo in to a directory of choice.
@@ -27,7 +27,6 @@ npm install
 ```
 ng serve --open
 ```
-
 
 ## Changes/Fixes
 
