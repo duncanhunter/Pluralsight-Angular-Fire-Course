@@ -8,7 +8,6 @@ import { AngularFireModule } from 'angularfire2';
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment.prod';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { MaterialModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CompanyEditComponent } from './company/company-edit/company-edit.component';
@@ -21,7 +20,14 @@ import { AuthService } from './auth/auth.service';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './auth/auth.guard';
-
+import {
+  MdButtonModule,
+  MdCardModule,
+  MdInputModule,
+  MdToolbarModule,
+  MdProgressBarModule,
+  MdSelectModule
+} from '@angular/material';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,9 +45,14 @@ import { AuthGuard } from './auth/auth.guard';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    MaterialModule,
     BrowserAnimationsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MdButtonModule,
+    MdCardModule,
+    MdInputModule,
+    MdToolbarModule,
+    MdProgressBarModule,
+    MdSelectModule
   ],
   providers: [
     AuthGuard,
