@@ -11,12 +11,12 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
+import { DisconnectCompaniesSuccessAction } from './company.actions';
 
 @Injectable()
 export class CompanyEffects {
 
-
-     @Effect() connectCompanies$ = this.actions$
+    @Effect() connectCompanies$ = this.actions$
         .ofType(CompanyActions.CONNECT_COMPANIES, CompanyActions.DISCONNECT_COMPANIES)
         .switchMap(action => {
             if (action.type === CompanyActions.CONNECT_COMPANIES) {
@@ -24,29 +24,21 @@ export class CompanyEffects {
                     .catch(error => Observable.of(new CompanyActions.ConnectCompaniesFailureAction(error)));
             } else {
                 this.companyService.diconnectCompanies();
-                return Observable.of({ type: 'DISCONNECT_COMPANIES_SUCCESS' });
+                return Observable.of(new CompanyActions.DisconnectCompaniesSuccessAction());
             }
         });
-
 
     // @Effect() connectCompanies$ = this.actions$
     //     .ofType(CompanyActions.CONNECT_COMPANIES, CompanyActions.DISCONNECT_COMPANIES)
     //     .switchMap(action => {
     //         if (action.type === CompanyActions.CONNECT_COMPANIES) {
     //             return this.companyService.getCompanies()
-    //                 .map(companies => (new CompanyActions.ConnectCompaniesSuccessAction(companies)))
+    //                 .map(companies => (new CompanyActions. (companies)))
     //                 .catch(error => Observable.of(new CompanyActions.ConnectCompaniesFailureAction(error)));
     //         } else {
-    //             return Observable.of({type: 'DISCONNECT_COMPANIES_SUCCESS'});
+    //             return Observable.of(new CompanyActions.DisconnectCompaniesSuccessAction());
     //         }
     //     });
-
-    @Effect() removeCompany$ = this.actions$
-        .ofType(CompanyActions.REMOVE_COMPANY)
-        .map(toPayload)
-        .switchMap(company => this.companyService.removeCompany(company)
-            .then(_ => this.router.navigate([`/company-list`])))
-        .catch(error => Observable.of((new CompanyActions.RemoveCompanyFailureAction(error))));
 
     constructor(
         private router: Router,

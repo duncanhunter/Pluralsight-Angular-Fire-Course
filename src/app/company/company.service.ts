@@ -41,7 +41,7 @@ export class CompanyService {
       initialDataLoaded = true;
       this.companiesEventsSubject.next(new CompanyActions.ConnectCompaniesSuccessAction(companies));
     });
-
+ 
     this.companiesRef.on('child_added', (company) => {
       if (initialDataLoaded) {
         this.companiesEventsSubject.next(new CompanyActions.AddedCompanySyncedAction(this.companyTransform(company)));
