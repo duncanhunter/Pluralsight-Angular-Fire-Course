@@ -4,6 +4,7 @@ import { CompanyService } from '../company.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Company } from '../company';
+import 'rxjs/add/observable/of';
 
 @Component({
   selector: 'app-company-edit',

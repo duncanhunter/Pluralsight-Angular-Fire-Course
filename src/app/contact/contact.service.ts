@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/map';
 
 import { Contact } from './contact';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
