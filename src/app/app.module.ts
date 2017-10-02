@@ -18,7 +18,8 @@ import {
   MdCardModule,
   MdInputModule,
   MdToolbarModule,
-  MdProgressBarModule
+  MdProgressBarModule,
+  MdSelectModule
 } from '@angular/material';
 
 @NgModule({
@@ -40,7 +41,8 @@ import {
     MdCardModule,
     MdInputModule,
     MdToolbarModule,
-    MdProgressBarModule
+    MdProgressBarModule,
+    MdSelectModule
   ],
   providers: [CompanyService],
   bootstrap: [AppComponent]
