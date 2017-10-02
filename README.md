@@ -5,11 +5,11 @@
 ![branchs list](src/assets/branching-info.png)
 
 To clone a branch from this GitHub repo run the following commands:
-1. Clone the repo in to a directory of choice.
+1. Clone the repo in to a directory of choice
 ```
 git clone "https://github.com/duncanhunter/AngularFireCourse"
 ```
-2. Change directory in the project folder
+2. Change directory into the project folder
 ```
 cd AngularFireCourse
 ```
@@ -17,7 +17,7 @@ cd AngularFireCourse
 ```
 git branch --all
 ```
-4. Change to a particular part of the course code and install packages with npm install.
+4. Change to a particular part of the course code and install packages with npm install
 ```
 git checkout --quiet m4-start 
 
@@ -34,4 +34,4 @@ ng serve --open
 - Update material.angular.io install video and all code branches to show individual Material component modules being installed. In module Retrieving and Working with Firebase Objects > Adding Angular Material.
 - Update video showing old reference of how to import AngularFire vs AngularFireDatabase in module Installation and Setup > Configure and Install AngularFire.
 - Updated missing half screen in module Querying Firebase Lists With Observables > Multipath Updates Demo.
-- Added all code branches and info to github repo
+- Added all code branches and info to this GitHub repo
