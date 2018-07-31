@@ -1,6 +1,6 @@
 # Building Apps With AngularFire Course
 
-> !!! IMPORTANT This course is for the proveious version of Angularfire2 (v4). This course now is a good way to learn the concepts of Angularfire and the Realtime DB or if you are developing on V4 of Angularfire 2 this is a great course.
+> !!! IMPORTANT This course is for the previous version of Angularfire2 (v4). This course now is a good way to learn the concepts of Angularfire and the Realtime DB or if you are developing on V4 of Angularfire 2 this is a great course.
 
 > For those wanting to use the new Firestore database from Google or use the latest Angularfire2 v5+ then this code will need to be adapted. Due to the many syntactic changes in Angularfire2 (v5) a whole new course needs to be recorded for Pluralsight, which I aim to do in the future.
 
